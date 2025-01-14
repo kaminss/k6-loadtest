@@ -20,6 +20,10 @@ export const options = {
 
 export default function () {
   const res = http.get('LOADTEST_ENDPOINT');
-  check(res, { 'status was 200': (r) => r.status == 200 });
+  check(res, {
+    'status is 200': (r) => r.status === 200,
+    'responseMesg is Success': (r) => r.json().responseMesg === 'Success',
+    'responseCode is 000': (r) => r.json().responseCode === '000',
+  });
   sleep(1);
 }
